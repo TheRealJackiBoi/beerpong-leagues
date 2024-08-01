@@ -9,6 +9,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -21,13 +22,20 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @Basic(optional = false, fetch = FetchType.EAGER)
+    private UUID id;
+
     @Basic(optional = false)
     @Column(name = "user_name", length = 25)
     private String username;
 
     @Basic(optional = false)
+    @Column(name = "email", length = 50)
+    private String email;
+
+    @Basic(optional = false)
     @Column(name = "user_password", length = 255, nullable = false)
-    private String userPassword;
+    private String password;
 
     @JoinTable(name = "user_roles", joinColumns = {
             @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
@@ -37,7 +45,7 @@ public class User implements Serializable {
 
     public User(String username, String userPassword) {
         this.username = username;
-        this.userPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+        this.password = BCrypt.hashpw(userPassword, BCrypt.gensalt());
     }
 
     public Set<String> getRolesAsStrings() {
@@ -51,15 +59,19 @@ public class User implements Serializable {
         return rolesAsStrings;
     }
     public boolean verifyPassword(String pw) {
-        return BCrypt.checkpw(pw, userPassword);
+        return BCrypt.checkpw(pw, password);
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = BCrypt.hashpw(userPassword, BCrypt.gensalt());
+    public void setPassword(String userPassword) {
+        this.password = BCrypt.hashpw(userPassword, BCrypt.gensalt());
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void addRole(Role userRole) {

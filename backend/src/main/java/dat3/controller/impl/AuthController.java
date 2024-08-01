@@ -13,12 +13,12 @@ import jakarta.persistence.EntityManagerFactory;
 
 import java.util.Set;
 
-public class UserController {
+public class AuthController {
 
     private final UserDao userDao;
     private final TokenFactory tokenFactory = TokenFactory.getInstance();
 
-    public UserController() {
+    public AuthController() {
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
         userDao = UserDao.getInstance(emf);
     }

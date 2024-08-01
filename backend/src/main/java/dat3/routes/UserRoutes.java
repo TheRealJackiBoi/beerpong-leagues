@@ -1,21 +1,19 @@
 package dat3.routes;
 
-import dat3.controller.impl.UserController;
+import dat3.controller.impl.AuthController;
 import dat3.security.RouteRoles;
 import io.javalin.apibuilder.EndpointGroup;
 
-import static io.javalin.apibuilder.ApiBuilder.path;
-import static io.javalin.apibuilder.ApiBuilder.post;
+import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class UserRoutes {
-    private final UserController userController = new UserController();
+    //private final AuthController userController = new AuthController();
 
     protected EndpointGroup getRoutes() {
-
         return () -> {
-            path("/auth", () -> {
-                post("/login", userController::login, RouteRoles.ANYONE);
-                post("/register", userController::register, RouteRoles.ANYONE);
+            //get("/", userController., RouteRoles.ADMIN);
+            path("/:id", () -> {
+
             });
         };
     }

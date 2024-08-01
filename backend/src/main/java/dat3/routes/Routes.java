@@ -19,6 +19,7 @@ public class Routes {
     private int count = 0;
 
     private final UserRoutes userRoutes = new UserRoutes();
+    private final AuthRoutes authRoutes = new AuthRoutes();
 
     private final Logger LOGGER = LoggerFactory.getLogger(Routes.class);
 
@@ -32,7 +33,8 @@ public class Routes {
             app.before(this::requestInfoHandler);
 
             app.routes(() -> {
-                path("/", userRoutes.getRoutes());
+                path("/users", userRoutes.getRoutes());
+                path("/auth", authRoutes.getRoutes());
             });
 
             app.after(ctx -> LOGGER.info(" Request {} - {} was handled with status code {}", count++, ctx.attribute("requestInfo"), ctx.status()));

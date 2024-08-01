@@ -15,6 +15,7 @@ import java.util.Set;
 public class UserDTO {
 
     private String username;
+    private String email;
     private Set<String> roles;
 
     public UserDTO(String username, String[] roles) {
@@ -35,13 +36,4 @@ public class UserDTO {
         return userDTOList;
 
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Set<String> getRoles() {
-        return roles;
-    }
-
 }
