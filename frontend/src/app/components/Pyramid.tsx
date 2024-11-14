@@ -5,15 +5,18 @@ import BeerCup from './BeerCup';
 
 type PyramidProps = {
   rows: number;
+  selectedPlayer: string,
+  updateCupsMade: (name: string, change: number) => void,
 };
 
-const Pyramid: React.FC<PyramidProps> = ({ rows }) => {
+const Pyramid: React.FC<PyramidProps> = ({ rows, selectedPlayer, updateCupsMade }) => {
   // Create an array to represent the rows in the pyramid
   const pyramid = Array.from({ length: rows }, (_, i) => i + 1);
 
   // Function to handle click on a circle
   const handleClick = (row: number, col: number) => {
-    alert(`Circle at row ${row}, column ${col} clicked!`);
+    //alert( selectedPlayer + ` hit cup at row ${row}, column ${col} clicked!`);
+    updateCupsMade(selectedPlayer, 1);
   };
 
   return (
