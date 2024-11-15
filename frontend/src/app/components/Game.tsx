@@ -32,10 +32,11 @@ type GameProps = {};
 
         //This gets run twice
         setPlayers(prev => prev.map(player => {
+            const newPlayer = Object.assign({}, player) // Without this, the object gets increased twice!
             if (player.name == name){
-                player.cupsMade += change;
+                newPlayer.cupsMade += change;
             }
-            return player;
+            return newPlayer;
         }));
       };
 
