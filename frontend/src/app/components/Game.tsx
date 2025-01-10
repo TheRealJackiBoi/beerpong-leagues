@@ -77,8 +77,10 @@ type GameProps = {};
 
     return (
         <div>
-            <h1>{headingText}</h1>
-            <Button color="primary" variant="solid" onClick={ () => {PassTurn(); }}>Next Turn</Button>
+            <div>
+                <h1>{headingText}</h1>
+                <Button color="primary" variant="solid" onClick={ () => {PassTurn(); }}>Next Turn</Button>
+            </div>
             <div style={{display: "grid", gridTemplateColumns: "1fr 1fr"}}>
                 <div style={{backgroundColor: "#0070f3"}}>
                     <Pyramid rows={4} selectedPlayer={selectedPlayer} updateCupsMade={updateCupsMade} />

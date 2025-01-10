@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 
 
 type BeerCupProps = {
@@ -9,6 +10,8 @@ type BeerCupProps = {
 };
   
   const BeerCup: React.FC<BeerCupProps> = ({ onClick, color = 'red' }) => {
+
+
     return (
       <div
         onClick={onClick}
